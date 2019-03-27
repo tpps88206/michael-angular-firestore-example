@@ -2,6 +2,7 @@
 
 runScript.sh
 firebase.key
+src/environments/environment.ts
 
 # compiled output
 /dist
