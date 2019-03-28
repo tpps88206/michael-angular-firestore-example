@@ -10,13 +10,16 @@ This is the example website of an accounting book with Angular 7 and Cloud Fires
 * Then use `ng serve` start your local project.
 * Enjoy.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
 ## Reference
 
 [Angular 7](https://angular.io/)
+
 [Cloud Firestore](https://firebase.google.com/docs/firestore/)
+
 [AngularFire](https://github.com/angular/angularfire2#readme)
+
 [Semantic UI](https://semantic-ui.com/)
+
 [Font Awesome](https://fontawesome.com/)
+
 [Animate.css](https://github.com/daneden/animate.css)
