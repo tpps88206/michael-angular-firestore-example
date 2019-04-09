@@ -57,6 +57,7 @@ export class BookService {
   }
 
   createBook(book: BookModel): Promise<DocumentReference> {
+    console.log(book);
     return this.booksCollection.add(storeTimeObject(JSON.parse(JSON.stringify(book))));
   }
 

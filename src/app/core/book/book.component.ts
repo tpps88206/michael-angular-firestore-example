@@ -47,17 +47,16 @@ export class BookComponent implements OnInit, AfterViewInit {
 
   onSubmit(type: string) {
     this.submitted = true;
+    this.newItemForm.patchValue({date: new Date()});
 
     // stop here if form is invalid
     if (this.newItemForm.invalid) {
       return;
     }
-
     // transfer value
     if (type === 'expenses') {
       this.newItemForm.patchValue({value: this.newItemForm.controls.value.value * -1});
     }
-
     this.bookService.createBook(this.newItemForm.getRawValue()).then(
       () => {
         this.init();

@@ -7,5 +7,5 @@ export const AppConfig: any = {
     book: 'book',
     error404: '404'
   },
-  version: '2.0'
+  version: '2.1'
 };

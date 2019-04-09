@@ -12,12 +12,12 @@
             </label>
             <input type="tel" formControlName="value" placeholder="Value" id="value">
           </div>
-          <div class="ui calendar field labeled massive fluid input" [ngClass]="{ 'error': submitted && f.value.errors }">
-            <label for="date" class="ui label" style="width: 4rem;">
-              <i class="fas fa-calendar-alt"></i>
-            </label>
-            <input type="text" formControlName="date" placeholder="Date" id="date">
-          </div>
+          <!--<div class="ui calendar field labeled massive fluid input" [ngClass]="{ 'error': submitted && f.date.errors }">-->
+            <!--<label for="date" class="ui label" style="width: 4rem;">-->
+              <!--<i class="fas fa-calendar-alt"></i>-->
+            <!--</label>-->
+            <!--<input type="text" autocomplete="off" formControlName="date" placeholder="Date" id="date">-->
+          <!--</div>-->
           <div class="ui left action field massive fluid input">
             <div class="ui floating dropdown button" [ngClass]="{ 'error': submitted && f.user.errors }" style="min-width: 4rem;">
               <div class="text">
