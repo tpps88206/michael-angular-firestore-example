@@ -6,7 +6,7 @@ This is the example website of an accounting book with Angular 7 and Cloud Fires
 
 * Clone the repo with `git clone https://github.com/tpps88206/angular-firestore-example.git`.
 * Create your own Firebase porject [here](https://firebase.google.com/).
-* Copy your Firebase key and paste it at `sre/environments/environment.ts` and `sre/environments/environment.prod.ts`.
+* Copy your Firebase key and paste it at `src/environments/environment.ts` and `src/environments/environment.prod.ts`.
 * Then use `ng serve` start your local project.
 * Enjoy.
 
