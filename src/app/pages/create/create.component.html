@@ -1,0 +1,24 @@
+<nb-card>
+  <nb-card-header>New record</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="newItemForm">
+      <input nbInput type="tel" formControlName="value" fullWidth status="danger" placeholder="Value" *ngIf="submitted && f.date.errors else valueInput">
+      <ng-template #valueInput>
+        <input nbInput type="tel" formControlName="value" fullWidth placeholder="Value">
+      </ng-template>
+
+      <nb-select placeholder="Select Showcase">
+        <nb-option value="Michael" (click)="setItemUser('Michael')">Michael</nb-option>
+        <nb-option value="Eileen" (click)="setItemUser('Eileen')">Eileen</nb-option>
+      </nb-select>
+
+      <input nbInput type="tel" formControlName="description" fullWidth placeholder="Description">
+
+      <div class="ui massive fluid buttons">
+        <button class="ui green button" (click)="onSubmit('income')">Income</button>
+        <div class="or"></div>
+        <button class="ui red button" (click)="onSubmit('expenses')">Expenses</button>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

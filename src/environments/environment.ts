@@ -6,6 +6,6 @@ export const environment = {
     databaseURL: 'YOUR_FIREBASE_DATABASE_URL',
     projectId: 'YOUR_FIREBASE_PROJECT_ID',
     storageBucket: 'YOUR_FIREBASE_STORAGE_BITBUCKET',
-    messagingSenderId: 'YOUR_FIREBASE_MESSAGING_SENDER_ID'
-  }
+    messagingSenderId: 'YOUR_FIREBASE_MESSAGING_SENDER_ID',
+  },
 };
