@@ -50,10 +50,6 @@
 
     margin-top: nb-theme(sidebar-header-gap);
 
-    @include nb-for-theme(corporate) {
-      margin-top: 0;
-    }
-
     /deep/ .main-container {
       height:
         calc(#{nb-theme(sidebar-height)} - #{nb-theme(header-height)} - #{nb-theme(sidebar-header-gap)}) !important;
@@ -110,7 +106,7 @@
 
     /deep/ nb-menu {
       & > .menu-items {
-        & > .menu-item:first-child {
+        & > .menu-item:nth-child(3) {
           .menu-title {
             &::after {
               content: 'new';

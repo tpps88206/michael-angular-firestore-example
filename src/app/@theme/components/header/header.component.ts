@@ -4,6 +4,7 @@ import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { UserData } from '../../../@core/data/users';
 import { AnalyticsService } from '../../../@core/utils';
 import { LayoutService } from '../../../@core/utils';
+import { AppConfig } from '../../../shared/config/app.config';
 
 @Component({
   selector: 'ngx-header',
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit {
   @Input() position = 'normal';
 
   user: any;
+  appName = AppConfig.appName;
 
   userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
 

@@ -8,7 +8,7 @@ import { storeTimeObject } from './store.time.function';
 import { AppConfig } from '../config/app.config';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RecordService {
   private recordsCollection: AngularFirestoreCollection<RecordModel>;
@@ -42,7 +42,7 @@ export class RecordService {
           });
         }),
         tap(() => console.log(`fetched records`)),
-        catchError(RecordService.handleError('getRecords', []))
+        catchError(RecordService.handleError('getRecords', [])),
       );
   }
 
@@ -52,12 +52,11 @@ export class RecordService {
         return new RecordModel({id, ...record.data()});
       }),
       tap(() => console.log(`fetched record ${id}`)),
-      catchError(RecordService.handleError('getRecord', []))
+      catchError(RecordService.handleError('getRecord', [])),
     );
   }
 
   createRecord(record: RecordModel): Promise<DocumentReference> {
-    console.log(record);
     return this.recordsCollection.add(storeTimeObject(JSON.parse(JSON.stringify(record))));
   }
 

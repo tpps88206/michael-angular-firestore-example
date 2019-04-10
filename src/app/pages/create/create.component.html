@@ -1,24 +1,78 @@
-<nb-card>
-  <nb-card-header>New record</nb-card-header>
-  <nb-card-body>
-    <form [formGroup]="newItemForm">
-      <input nbInput type="tel" formControlName="value" fullWidth status="danger" placeholder="Value" *ngIf="submitted && f.date.errors else valueInput">
-      <ng-template #valueInput>
-        <input nbInput type="tel" formControlName="value" fullWidth placeholder="Value">
-      </ng-template>
-
-      <nb-select placeholder="Select Showcase">
-        <nb-option value="Michael" (click)="setItemUser('Michael')">Michael</nb-option>
-        <nb-option value="Eileen" (click)="setItemUser('Eileen')">Eileen</nb-option>
-      </nb-select>
-
-      <input nbInput type="tel" formControlName="description" fullWidth placeholder="Description">
-
-      <div class="ui massive fluid buttons">
-        <button class="ui green button" (click)="onSubmit('income')">Income</button>
-        <div class="or"></div>
-        <button class="ui red button" (click)="onSubmit('expenses')">Expenses</button>
-      </div>
-    </form>
-  </nb-card-body>
-</nb-card>
+<div class="row">
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>新增帳目</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="newItemForm">
+          <div class="form-group row">
+            <label for="recordValue" class="col-sm-3 col-form-label">金額</label>
+            <div class="col-sm-9">
+              <input nbInput type="tel" formControlName="value" fullWidth status="danger"
+                     placeholder="AMOUNT" *ngIf="submitted && f.value.errors else valueTemplate">
+              <ng-template #valueTemplate>
+                <input nbInput type="tel" formControlName="value" id="recordValue" fullWidth placeholder="AMOUNT">
+              </ng-template>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="recordUser" class="col-sm-3 col-form-label">人員</label>
+            <div class="col-sm-9">
+              <nb-select formControlName="user" status="danger"
+                         placeholder="SELECT" *ngIf="submitted && f.user.errors else userTemplate">
+                <nb-option value="Michael">Michael</nb-option>
+                <nb-option value="Eileen">Eileen</nb-option>
+              </nb-select>
+              <ng-template #userTemplate>
+                <nb-select formControlName="user" id="recordUser" placeholder="SELECT">
+                  <nb-option value="Michael">Michael</nb-option>
+                  <nb-option value="Eileen">Eileen</nb-option>
+                </nb-select>
+              </ng-template>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="recordDate" class="col-sm-3 col-form-label">日期</label>
+            <div class="col-sm-9">
+              <input nbInput formControlName="date" fullWidth status="danger" [nbDatepicker]="formpicker"
+                     placeholder="DATE" *ngIf="submitted && f.date.errors else dateTemplate">
+              <ng-template #dateTemplate>
+                <input nbInput formControlName="date" id="recordDate" fullWidth [nbDatepicker]="formpicker" placeholder="DATE">
+              </ng-template>
+              <nb-datepicker #formpicker></nb-datepicker>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="recordDescription" class="col-sm-3 col-form-label">敘述</label>
+            <div class="col-sm-9">
+              <input nbInput type="text" formControlName="description" id="recordDescription" fullWidth placeholder="DESCRIPTION">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3">狀態</label>
+            <div class="col-sm-9">
+              <div class="form-check">
+                <label class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" name="type" value="expense" formControlName="type">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">出帳</span>
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" name="type" value="income" formControlName="type">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">入帳</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-sm-3 col-sm-9">
+              <button type="submit" class="btn btn-primary" (click)="onSubmit()">確定</button>
+            </div>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

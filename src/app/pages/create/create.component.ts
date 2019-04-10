@@ -22,7 +22,7 @@ export class CreateComponent implements OnInit {
   }
 
   // convenience getter for easy access to form fields
-  get f() {
+  get f(): any {
     return this.newItemForm.controls;
   }
 
@@ -38,23 +38,20 @@ export class CreateComponent implements OnInit {
       description: new FormControl(''),
       user: new FormControl(user, [Validators.required]),
       check: new FormControl(false),
+      type: new FormControl('expense'),
     });
   }
 
-  setItemUser(userName: string) {
-    this.newItemForm.patchValue({user: userName});
-  }
-
-  onSubmit(type: string) {
+  onSubmit() {
     this.submitted = true;
-    this.newItemForm.patchValue({date: new Date()});
 
     // stop here if form is invalid
     if (this.newItemForm.invalid) {
       return;
     }
+
     // transfer value
-    if (type === 'expenses') {
+    if (this.newItemForm.controls.type.value === 'expense') {
       this.newItemForm.patchValue({value: this.newItemForm.controls.value.value * -1});
     }
     this.recordService.createRecord(this.newItemForm.getRawValue()).then(
