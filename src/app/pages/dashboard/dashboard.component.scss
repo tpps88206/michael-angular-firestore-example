@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  &:before, &:after {
+    box-sizing: inherit;
+  }
+}
+html {
+  width: 100vw;
+  height: 100vh;
+}
+body {
+  background-color: #1fa2ed;
+  color: #fff;
+}
+
+// LET THE LOADING BEGIN
+.start-screen {
+  display: flex;
+  justify-content: center;
+  flex-flow: nowrap column;
+  align-items: center;
+  min-height: 100vh;
+}
+.loading {
+  display: flex;
+  margin: 24px 0;
+}
+.loading__element {
+  font: normal 100 2rem/1 Roboto;
+  letter-spacing: .5em;
+}
+[class*="el"] {
+  animation: bouncing 2s infinite ease;
+}
+
+@for $i from 1 through 9 {
+  $delay: percentage($i);
+  .el#{$i} {
+    animation-delay: $delay / 1000% + s;
+  }
+}
+
+@keyframes bouncing {
+  0%, 100% {
+    transform: scale3d(1,1,1);
+  }
+  50% {
+    transform: scale3d(0,0,1);
+  }
+}
+
+
+

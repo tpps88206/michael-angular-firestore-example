@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateComponent } from './create/create.component';
 import { ListComponent } from './list/list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -23,6 +24,7 @@ const PAGES_COMPONENTS = [
     ThemeModule,
     FormsModule,
     ReactiveFormsModule,
+    Ng2SmartTableModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

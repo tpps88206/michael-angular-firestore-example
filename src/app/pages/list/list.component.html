@@ -1,38 +1,48 @@
+<!--<div class="ui stackable two column centered grid">-->
+  <!--<div class="column">-->
+    <!--<div>-->
+      <!--<table class="ui very basic table unstackable">-->
+        <!--<thead>-->
+        <!--<tr class="center aligned">-->
+          <!--<th><i class="far fa-calendar-alt"></i></th>-->
+          <!--<th><i class="fas fa-exclamation-triangle"></i></th>-->
+          <!--<th><i class="fas fa-dollar-sign"></i></th>-->
+          <!--<th><i class="far fa-file-alt"></i></th>-->
+          <!--<th><i class="fas fa-user"></i></th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr *ngFor="let record of records" class="center aligned" [ngClass]="record.check ? '' : 'error'" (click)="onCheck(record)">-->
+          <!--<td data-label="Date">-->
+            <!--<span *ngIf="record.date; else dateLoader">-->
+              <!--{{ record.date.seconds * 1000 | date }}-->
+            <!--</span>-->
+            <!--<ng-template #dateLoader>-->
+              <!--<i class="ui blue header fas fa-circle-notch fa-spin"></i>-->
+            <!--</ng-template>-->
+          <!--</td>-->
+          <!--<td data-label="Type">-->
+            <!--<i class="ui header fas" [ngClass]="record.value >= 0 ? 'fa-piggy-bank green' : 'fa-hand-holding-usd red'"></i>-->
+          <!--</td>-->
+          <!--<td data-label="Value" [ngClass]="record.value >= 0 ? 'green' : 'red'">{{ (record.value >= 0 ? record.value : record.value * -1) }}</td>-->
+          <!--<td data-label="Description">{{ record.description ? record.description : '' }}</td>-->
+          <!--<td data-label="User">{{ record.user ? record.user : '' }}</td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+      <!--</table>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;END BOOK SECTION&ndash;&gt;-->
+  <!--</div>-->
+<!--</div>-->
 
-<div class="ui stackable two column centered grid">
-  <div class="column">
-    <div>
-      <table class="ui very basic table unstackable">
-        <thead>
-        <tr class="center aligned">
-          <th><i class="far fa-calendar-alt"></i></th>
-          <th><i class="fas fa-exclamation-triangle"></i></th>
-          <th><i class="fas fa-dollar-sign"></i></th>
-          <th><i class="far fa-file-alt"></i></th>
-          <th><i class="fas fa-user"></i></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let record of records" class="center aligned" [ngClass]="record.check ? '' : 'error'" (click)="onCheck(record)">
-          <td data-label="Date">
-            <span *ngIf="record.date; else dateLoader">
-              {{ record.date.seconds * 1000 | date }}
-            </span>
-            <ng-template #dateLoader>
-              <i class="ui blue header fas fa-circle-notch fa-spin"></i>
-            </ng-template>
-          </td>
-          <td data-label="Type">
-            <i class="ui header fas" [ngClass]="record.value >= 0 ? 'fa-piggy-bank green' : 'fa-hand-holding-usd red'"></i>
-          </td>
-          <td data-label="Value" [ngClass]="record.value >= 0 ? 'green' : 'red'">{{ (record.value >= 0 ? record.value : record.value * -1) }}</td>
-          <td data-label="Description">{{ record.description ? record.description : '' }}</td>
-          <td data-label="User">{{ record.user ? record.user : '' }}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    <!--END BOOK SECTION-->
-  </div>
-</div>
 
+
+<nb-card>
+  <nb-card-header>
+    帳目清單
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

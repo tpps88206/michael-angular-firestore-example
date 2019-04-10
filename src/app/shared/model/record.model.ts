@@ -7,6 +7,7 @@ export class RecordModel {
   createdAt: any;
   updatedAt: any;
   date: any;
+  type: string;
 
   constructor(record: any = {}) {
     this.id = record.id;
@@ -17,5 +18,6 @@ export class RecordModel {
     this.createdAt = record.createdAt;
     this.updatedAt = record.updatedAt;
     this.date = record.date;
+    this.type = record.type;
   }
 }
