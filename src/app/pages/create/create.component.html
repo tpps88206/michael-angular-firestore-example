@@ -50,25 +50,23 @@
           <div class="form-group row">
             <label class="col-sm-3">狀態</label>
             <div class="col-sm-9">
-              <div class="form-check">
-                <label class="custom-control custom-radio">
-                  <input type="radio" class="custom-control-input" name="type" value="expense" formControlName="type">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">出帳</span>
+              <div ngbRadioGroup
+                   class="btn-group btn-group-toggle btn-outline-toggle-group btn-group-full-width btn-toggle-radio-group">
+                <label ngbButtonLabel class="btn btn-outline-primary">
+                  <input ngbButton type="radio" name="type" value="expense" formControlName="type"> 出帳
                 </label>
-              </div>
-              <div class="form-check">
-                <label class="custom-control custom-radio">
-                  <input type="radio" class="custom-control-input" name="type" value="income" formControlName="type">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">入帳</span>
+                <label ngbButtonLabel class="btn btn-outline-primary">
+                  <input ngbButton type="radio" name="type" value="income" formControlName="type"> 入帳
                 </label>
               </div>
             </div>
           </div>
           <div class="form-group row">
             <div class="offset-sm-3 col-sm-9">
-              <button type="submit" class="btn btn-primary" (click)="onSubmit()">確定</button>
+              <button type="submit" class="btn btn-success btn-block" (click)="submit()"
+                      [nbSpinner]="loadingMediumGroup" nbSpinnerStatus="success" nbSpinnerMessage="">
+                確定
+              </button>
             </div>
           </div>
         </form>
