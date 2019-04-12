@@ -1,20 +1,11 @@
 import {Component, Input} from '@angular/core';
 import { NbThemeService, NbPopoverDirective } from '@nebular/theme';
-import { AnalyticsService } from '../../../../@core/utils/analytics.service';
+import { AnalyticsService } from '../../../../@core/utils';
 import { NbJSThemeOptions } from '@nebular/theme/services/js-themes/theme.options';
 
 @Component({
   selector: 'ngx-theme-switcher-list',
-  template: `
-    <ul class="themes-switcher-list">
-      <li class="themes-switcher-item"
-          *ngFor="let theme of themes"
-          (click)="onToggleTheme(theme.key)">
-        <i class="nb-drop" [ngClass]="'drop-icon-' + theme.key"></i>
-        <span>{{ theme.title }}</span>
-      </li>
-    </ul>
-  `,
+  templateUrl: './theme-switcher-list.component.html',
   styleUrls: ['./theme-switcher-list.component.scss'],
 })
 export class ThemeSwitcherListComponent {

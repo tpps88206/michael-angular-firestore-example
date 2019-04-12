@@ -4,17 +4,8 @@ import { StateService } from '../../../@core/utils';
 
 @Component({
   selector: 'ngx-toggle-settings-button',
+  templateUrl: './toggle-settings-button.component.html',
   styleUrls: ['./toggle-settings-button.component.scss'],
-  template: `
-    <button class="toggle-settings"
-            (click)="toggleSettings()"
-            [class.expanded]="expanded"
-            [class.sidebar-end]="sidebarEnd"
-            [class.was-expanded]="wasExpanded"
-    >
-      <i class="nb-gear"></i>
-    </button>
-  `,
 })
 export class ToggleSettingsButtonComponent {
 

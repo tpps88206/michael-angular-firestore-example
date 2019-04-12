@@ -11,37 +11,10 @@ import {
 import { StateService } from '../../../@core/utils';
 import { Router } from '@angular/router';
 
-// TODO: move layouts into the framework
 @Component({
   selector: 'ngx-sample-layout',
+  templateUrl: './sample.layout.html',
   styleUrls: ['./sample.layout.scss'],
-  template: `
-    <nb-layout [center]="layout.id === 'center-column'" windowMode>
-      <nb-layout-header fixed>
-        <ngx-header [position]="sidebar.id === 'start' ? 'normal': 'inverse'"></ngx-header>
-      </nb-layout-header>
-
-      <nb-sidebar class="menu-sidebar"
-                   tag="menu-sidebar"
-                   responsive
-                   [end]="sidebar.id === 'end'">
-        <nb-sidebar-header>
-          <button class="btn btn-hero-success main-btn" (click)="goRouterNavigate('/pages/create')">
-            <i class="nb-compose"></i> <span>新增帳目</span>
-          </button>
-        </nb-sidebar-header>
-        <ng-content select="nb-menu"></ng-content>
-      </nb-sidebar>
-
-      <nb-layout-column class="main-content">
-        <ng-content select="router-outlet"></ng-content>
-      </nb-layout-column>
-
-      <nb-layout-footer fixed>
-        <ngx-footer></ngx-footer>
-      </nb-layout-footer>
-    </nb-layout>
-  `,
 })
 export class SampleLayoutComponent implements OnDestroy {
   layout: any = {};
