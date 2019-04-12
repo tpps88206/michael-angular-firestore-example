@@ -26,5 +26,9 @@
     .socials {
       font-size: 1.5rem;
     }
+
+    .footer-item-info /deep/ {
+      display: none;
+    }
   }
 }

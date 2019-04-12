@@ -8,4 +8,5 @@ import { AppConfig } from '../../../shared/config/app.config';
 })
 export class FooterComponent {
   version = AppConfig.version;
+  year = AppConfig.year;
 }

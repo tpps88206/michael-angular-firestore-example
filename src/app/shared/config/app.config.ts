@@ -9,4 +9,5 @@ export const AppConfig: any = {
   },
   version: '3.0',
   appName: 'puman',
+  year: '2019',
 };
