@@ -3,9 +3,9 @@ import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { RecordModel } from '../model/record.model';
+import { RecordModel } from '../../model/record.model';
 import { storeTimeObject } from './store.time.function';
-import { AppConfig } from '../config/app.config';
+import { AppConfig } from '../../config/app.config';
 
 @Injectable({
   providedIn: 'root',
@@ -47,7 +47,7 @@ export class RecordService {
   }
 
   getRecord(id: string): Observable<any> {
-    return this.afs.doc(`${AppConfig.routes.records}/${id}`).get().pipe(
+    return this.afs.doc(`${AppConfig.routes.record}/${id}`).get().pipe(
       map((record) => {
         return new RecordModel({id, ...record.data()});
       }),
@@ -61,13 +61,16 @@ export class RecordService {
   }
 
   updateRecord(record: RecordModel): Promise<void> {
-    return this.afs.doc(`${AppConfig.routes.records}/${record.id}`)
-      .update(storeTimeObject(JSON.parse(JSON.stringify(record)), false)).then(() => {
+    const id = record.id;
+    const newObj = JSON.parse(JSON.stringify(record));
+    delete newObj.id;
+    return this.afs.doc(`${AppConfig.routes.record}/${id}`)
+      .update(storeTimeObject(newObj, false)).then(() => {
         console.log(`updated record w/ id=${record.id}`);
       });
   }
 
   deleteRecord(id: string): Promise<void> {
-    return this.afs.doc(`${AppConfig.routes.records}/${id}`).delete();
+    return this.afs.doc(`${AppConfig.routes.record}/${id}`).delete();
   }
 }

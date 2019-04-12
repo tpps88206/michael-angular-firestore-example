@@ -9,6 +9,7 @@ import {
   AnalyticsService,
   LayoutService,
   StateService,
+  ToastService,
 } from './utils';
 import { UserData } from './data/users';
 import { ElectricityData } from './data/electricity';
@@ -117,6 +118,7 @@ export const NB_CORE_PROVIDERS = [
   AnalyticsService,
   LayoutService,
   StateService,
+  ToastService,
 ];
 
 @NgModule({
