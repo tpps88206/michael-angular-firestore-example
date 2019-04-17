@@ -3,6 +3,11 @@
 @import '~@nebular/theme/styles/global/breakpoints';
 
 @include nb-install-component() {
+  /deep/ .main-container-backface>div {
+    -webkit-backface-visibility: hidden;
+    background-color: blue;
+  }
+
   nb-layout-column.small {
     flex: 0.15 !important;
   }

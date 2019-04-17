@@ -1,4 +1,7 @@
 # compiled output
+runScript.sh
+dist.tar
+
 /dist
 /tmp
 /out-tsc
