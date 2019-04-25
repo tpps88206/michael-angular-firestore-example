@@ -7,10 +7,9 @@ export function storeTimeObject(obj: any, isNew = true) {
   };
   if (isNew) {
     newObj.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+    newObj.date = firebase.firestore.Timestamp.fromDate(new Date(newObj.date));
   } else {
     newObj.createdAt = firebase.firestore.Timestamp.fromDate(new Date(newObj.createdAt.seconds * 1000));
-  }
-  if (newObj.date) {
     newObj.date = firebase.firestore.Timestamp.fromDate(new Date(newObj.date.seconds * 1000));
   }
   return newObj;

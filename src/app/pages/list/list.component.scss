@@ -9,3 +9,12 @@ nb-card {
 :host /deep/ .custom-text-danger {
   color: #ff5680 !important;
 }
+
+:host /deep/ {
+  .form-control:disabled {
+    visibility: hidden !important;
+  }
+  .form-control:enabled {
+    height: 32px !important;
+  }
+}

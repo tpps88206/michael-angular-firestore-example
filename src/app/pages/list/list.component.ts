@@ -6,6 +6,7 @@ import { NbToastStatus } from '@nebular/theme/components/toastr/model';
 import { RecordModel } from '../../shared/model/record.model';
 import { RecordService } from '../../shared/service/record/record.service';
 import { ToastService } from '../../@core/utils';
+import { AppConfig } from '../../shared/config/app.config';
 
 @Component({
   selector: 'ngx-list',
@@ -20,6 +21,7 @@ export class ListComponent implements OnInit {
       add: false,
       edit: true,
       delete: false,
+      position: 'right',
     },
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
@@ -40,6 +42,7 @@ export class ListComponent implements OnInit {
       date: {
         title: '日期',
         type: 'string',
+        filter: false,
         editable: false,
         valuePrepareFunction: (v) => {
           return this.datePipe.transform(new Date(v.seconds * 1000 ), 'dd MMM yyyy');
@@ -59,6 +62,31 @@ export class ListComponent implements OnInit {
       user: {
         title: '人員',
         type: 'string',
+        filter: false,
+        editor: {
+          type: 'list',
+          config: {
+            list: AppConfig.users,
+          },
+        },
+      },
+      check: {
+        title: '確認',
+        type: 'html',
+        filter: false,
+        editor: {
+          type: 'list',
+          config: {
+            list: [
+              { value: true, title: '已確認' },
+              { value: false, title: '未確認' },
+            ],
+          },
+        },
+        valuePrepareFunction: (v) => {
+          return v ? '<div class="text-success"><i class="fas fa-check-circle"></i></div>'
+            : '<div class="text-danger"><i class="fas fa-times-circle"></i></div>';
+        },
       },
     },
   };
@@ -77,24 +105,24 @@ export class ListComponent implements OnInit {
     });
   }
 
-  update(event) {
+  update(event: any) {
     // TODO: Fix Error: Element was not found in the dataset
-    console.log(event);
+
+    const data: RecordModel = event.newData;
     // edit type
-    if ((<RecordModel>event.newData).value >= 0) {
-      (<RecordModel>event.newData).type = 'income';
+    if (data.value >= 0) {
+      data.type = 'income';
     } else {
-      (<RecordModel>event.newData).type = 'expense';
+      data.type = 'expense';
     }
-    // if (record.check) {
-    //   const result = confirm('Are you sure to initialize this data?');
-    //   if (result) {
-    //     record.check = false;
-    //   }
-    // } else {
-    //   record.check = true;
-    // }
-    this.recordService.updateRecord(<RecordModel>event.newData).then(
+    if (typeof data.check === 'string') {
+      if (data.check === 'true') {
+        data.check = true;
+      } else if (data.check === 'false') {
+        data.check = false;
+      }
+    }
+    this.recordService.updateRecord(data).then(
       () => {
         event.confirm.resolve();
         this.toastService.show(NbToastStatus.SUCCESS, '太棒了!', '帳目修改成功');

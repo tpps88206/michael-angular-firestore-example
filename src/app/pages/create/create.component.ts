@@ -4,6 +4,7 @@ import { NbToastStatus } from '@nebular/theme/components/toastr/model';
 
 import { RecordService } from '../../shared/service/record/record.service';
 import { ToastService } from '../../@core/utils';
+import {AppConfig} from '../../shared/config/app.config';
 
 @Component({
   selector: 'ngx-create',
@@ -14,6 +15,7 @@ export class CreateComponent implements OnInit, AfterViewInit {
   newItemForm: FormGroup;
   submitted = false;
   loadingMediumGroup = false;
+  users = AppConfig.users;
 
   constructor(
     private recordService: RecordService,
@@ -82,6 +84,7 @@ export class CreateComponent implements OnInit, AfterViewInit {
     if (this.newItemForm.controls.type.value === 'expense') {
       this.newItemForm.patchValue({value: this.newItemForm.controls.value.value * -1});
     }
+
     this.recordService.createRecord(this.newItemForm.getRawValue()).then(
       () => {
         this.init();

@@ -7,7 +7,11 @@ export const AppConfig: any = {
     record: 'record',
     error404: '404',
   },
-  version: '3.1',
+  version: '3.4',
   appName: 'puman',
   year: '2019',
+  users: [
+    { value: 'Michael', title: 'Michael' },
+    { value: 'Eileen', title: 'Eileen' },
+  ],
 };

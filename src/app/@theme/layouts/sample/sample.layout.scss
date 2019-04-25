@@ -5,7 +5,6 @@
 @include nb-install-component() {
   /deep/ .main-container-backface>div {
     -webkit-backface-visibility: hidden;
-    background-color: blue;
   }
 
   nb-layout-column.small {
@@ -163,7 +162,7 @@
 
     nb-sidebar.menu-sidebar {
 
-      // margin-top: 0;
+      margin-top: 0;
 
       /deep/ .main-container {
         height: calc(#{nb-theme(sidebar-height)} - #{nb-theme(header-height)}) !important;
@@ -177,6 +176,7 @@
     }
 
     .main-btn {
+      margin-top: 0 !important;
       // display: none;
     }
   }
