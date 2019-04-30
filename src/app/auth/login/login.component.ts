@@ -10,21 +10,17 @@ import { getDeepFromObject } from '@nebular/auth/helpers';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  redirectDelay: number = 0;
+  redirectDelay: number = 100;
 
   errors: string[] = [];
   messages: string[] = [];
   user: any = { rememberMe: true };
 
-  showMessages: any = {};
-  submitted: boolean = false;
   socialLinks: NbAuthSocialLink[] = [
     {
       title: 'google',
       icon: 'socicon-google' },
   ];
-
-  validation = {};
 
   constructor(
     protected authService: AuthService,
