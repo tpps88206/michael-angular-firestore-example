@@ -1,74 +1,72 @@
-<div class="row">
-  <div class="col-md-6">
-    <nb-card>
-      <nb-card-header>新增帳目</nb-card-header>
-      <nb-card-body>
-        <form [formGroup]="newItemForm" autocomplete="off">
-          <div class="form-group row">
-            <label for="recordValue" class="col-sm-3 col-form-label">金額</label>
-            <div class="col-sm-9">
-              <input nbInput type="tel" formControlName="value" fullWidth status="danger"
-                     placeholder="AMOUNT" *ngIf="submitted && f.value.errors else valueTemplate">
-              <ng-template #valueTemplate>
-                <input nbInput type="tel" formControlName="value" id="recordValue" fullWidth placeholder="AMOUNT">
-              </ng-template>
-            </div>
+<nb-card>
+  <nb-card-header>
+    新增帳目
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="newItemForm" autocomplete="off">
+      <div class="form-group row">
+        <label for="recordValue" class="col-sm-3 col-form-label">金額</label>
+        <div class="col-sm-9">
+          <input nbInput type="tel" formControlName="value" fullWidth status="danger"
+                 placeholder="AMOUNT" *ngIf="submitted && f.value.errors else valueTemplate">
+          <ng-template #valueTemplate>
+            <input nbInput type="tel" formControlName="value" id="recordValue" fullWidth placeholder="AMOUNT">
+          </ng-template>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="recordUser" class="col-sm-3 col-form-label">人員</label>
+        <div class="col-sm-9">
+          <nb-select formControlName="user" status="danger"
+                     placeholder="SELECT" *ngIf="submitted && f.user.errors else userTemplate">
+            <nb-option [value]="u.value" *ngFor="let u of users">{{ u.title }}</nb-option>
+          </nb-select>
+          <ng-template #userTemplate>
+            <nb-select formControlName="user" id="recordUser" placeholder="SELECT">
+              <nb-option [value]="u.value" *ngFor="let u of users">{{ u.title }}</nb-option>
+            </nb-select>
+          </ng-template>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="recordDate" class="col-sm-3 col-form-label">日期</label>
+        <div class="col-sm-9">
+          <input nbInput formControlName="date" fullWidth status="danger" [nbDatepicker]="formpicker"
+                 placeholder="DATE" *ngIf="submitted && f.date.errors else dateTemplate">
+          <ng-template #dateTemplate>
+            <input nbInput formControlName="date" id="recordDate" fullWidth [nbDatepicker]="formpicker" placeholder="DATE">
+          </ng-template>
+          <nb-datepicker #formpicker></nb-datepicker>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="recordDescription" class="col-sm-3 col-form-label">敘述</label>
+        <div class="col-sm-9">
+          <input nbInput type="text" formControlName="description" id="recordDescription" fullWidth placeholder="DESCRIPTION">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3">狀態</label>
+        <div class="col-sm-9">
+          <div ngbRadioGroup
+               class="btn-group btn-group-toggle btn-outline-toggle-group btn-group-full-width btn-toggle-radio-group">
+            <label ngbButtonLabel class="btn btn-outline-primary">
+              <input ngbButton type="radio" name="type" value="expense" formControlName="type"> 出帳
+            </label>
+            <label ngbButtonLabel class="btn btn-outline-primary">
+              <input ngbButton type="radio" name="type" value="income" formControlName="type"> 入帳
+            </label>
           </div>
-          <div class="form-group row">
-            <label for="recordUser" class="col-sm-3 col-form-label">人員</label>
-            <div class="col-sm-9">
-              <nb-select formControlName="user" status="danger"
-                         placeholder="SELECT" *ngIf="submitted && f.user.errors else userTemplate">
-                <nb-option [value]="u.value" *ngFor="let u of users">{{ u.title }}</nb-option>
-              </nb-select>
-              <ng-template #userTemplate>
-                <nb-select formControlName="user" id="recordUser" placeholder="SELECT">
-                  <nb-option [value]="u.value" *ngFor="let u of users">{{ u.title }}</nb-option>
-                </nb-select>
-              </ng-template>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="recordDate" class="col-sm-3 col-form-label">日期</label>
-            <div class="col-sm-9">
-              <input nbInput formControlName="date" fullWidth status="danger" [nbDatepicker]="formpicker"
-                     placeholder="DATE" *ngIf="submitted && f.date.errors else dateTemplate">
-              <ng-template #dateTemplate>
-                <input nbInput formControlName="date" id="recordDate" fullWidth [nbDatepicker]="formpicker" placeholder="DATE">
-              </ng-template>
-              <nb-datepicker #formpicker></nb-datepicker>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="recordDescription" class="col-sm-3 col-form-label">敘述</label>
-            <div class="col-sm-9">
-              <input nbInput type="text" formControlName="description" id="recordDescription" fullWidth placeholder="DESCRIPTION">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-3">狀態</label>
-            <div class="col-sm-9">
-              <div ngbRadioGroup
-                   class="btn-group btn-group-toggle btn-outline-toggle-group btn-group-full-width btn-toggle-radio-group">
-                <label ngbButtonLabel class="btn btn-outline-primary">
-                  <input ngbButton type="radio" name="type" value="expense" formControlName="type"> 出帳
-                </label>
-                <label ngbButtonLabel class="btn btn-outline-primary">
-                  <input ngbButton type="radio" name="type" value="income" formControlName="type"> 入帳
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="offset-sm-3 col-sm-9">
-              <button type="submit" class="btn btn-success btn-block" (click)="submit()"
-                      [nbSpinner]="loadingMediumGroup" nbSpinnerStatus="success" nbSpinnerMessage="">
-                確定
-              </button>
-            </div>
-          </div>
-        </form>
-      </nb-card-body>
-    </nb-card>
-  </div>
-</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-3 col-sm-9">
+          <button type="submit" class="btn btn-success btn-block" (click)="submit()"
+                  [nbSpinner]="loadingMediumGroup" nbSpinnerStatus="success" nbSpinnerMessage="">
+            確定
+          </button>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

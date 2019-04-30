@@ -20,9 +20,17 @@ import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthService } from './shared/service/auth/auth.service';
+import { AuthGuardService } from './shared/service/auth/auth-guard.service';
+import { LogoutComponent } from './auth/logout/logout.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    LogoutComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -40,6 +48,8 @@ import { environment } from '../environments/environment';
   bootstrap: [AppComponent],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
+    AuthService,
+    AuthGuardService,
   ],
 })
 export class AppModule {

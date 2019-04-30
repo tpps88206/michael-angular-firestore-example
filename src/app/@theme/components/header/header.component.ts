@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
-import { UserData } from '../../../@core/data/users';
+
 import { AnalyticsService } from '../../../@core/utils';
 import { LayoutService } from '../../../@core/utils';
 import { AppConfig } from '../../../shared/config/app.config';
+import { UserService } from '../../../shared/service/user/user.service';
+import { AuthService } from '../../../shared/service/auth/auth.service';
 
 @Component({
   selector: 'ngx-header',
@@ -18,19 +20,24 @@ export class HeaderComponent implements OnInit {
   user: any;
   appName = AppConfig.appName;
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  userMenu = [{ title: 'Log out', link: 'auth/logout' }];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
-              private userService: UserData,
+              private userService: UserService,
+              private authService: AuthService,
               private analyticsService: AnalyticsService,
-              private layoutService: LayoutService) {
+              private layoutService: LayoutService,
+              private router: Router) {
   }
 
   ngOnInit() {
     if (this.userService) {
-      this.userService.getUsers()
-        .subscribe((users: any) => this.user = users.nick);
+      this.user = null;
+      this.userService.getUser()
+        .subscribe((user: any) => {
+          this.user = user;
+        });
     }
   }
 
@@ -47,5 +54,9 @@ export class HeaderComponent implements OnInit {
 
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
+  }
+
+  login() {
+    this.router.navigate(['auth/login']);
   }
 }

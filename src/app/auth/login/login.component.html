@@ -1,0 +1,19 @@
+<nb-card>
+  <nb-card-header>
+    登入
+  </nb-card-header>
+  <nb-card-body>
+  <div class="links">
+    <ng-container *ngIf="socialLinks && socialLinks.length > 0">
+      <small class="form-text">Connect with:</small>
+      <div class="socials">
+        <ng-container *ngFor="let socialLink of socialLinks">
+          <a (click)="loginSocial(socialLink.title)"
+             [attr.class]="socialLink.icon"
+             [class.with-icon]="socialLink.icon"></a>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+  </nb-card-body>
+</nb-card>

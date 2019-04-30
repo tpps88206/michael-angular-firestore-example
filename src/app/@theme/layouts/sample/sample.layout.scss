@@ -69,10 +69,10 @@
 
     /deep/ .scrollable {
       @include nb-for-theme(corporate) {
-        padding-top: 0;
+        // padding-top: 0;
 
         .menu-item:first-child {
-          border-top: none;
+          // border-top: none;
         }
       }
     }
