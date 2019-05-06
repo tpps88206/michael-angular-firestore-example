@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, NgZone } from '@angular/core';
 import { NB_AUTH_OPTIONS, NbAuthSocialLink } from '@nebular/auth';
 import { AuthService } from '../../shared/service/auth/auth.service';
 import { Router } from '@angular/router';
@@ -25,7 +25,8 @@ export class LoginComponent {
   constructor(
     protected authService: AuthService,
     @Inject(NB_AUTH_OPTIONS) protected config = {},
-    protected router: Router) {
+    protected router: Router,
+    private ngZone: NgZone) {
     if (this.authService.isLoggedIn()) {
       this.redirectToDashboard();
     }
@@ -51,7 +52,7 @@ export class LoginComponent {
 
   redirectToDashboard() {
     setTimeout(() => {
-      this.router.navigate(['pages/dashboard']);
+      this.ngZone.run(() => this.router.navigate(['pages/dashboard'])).then();
     }, this.redirectDelay);
   }
 

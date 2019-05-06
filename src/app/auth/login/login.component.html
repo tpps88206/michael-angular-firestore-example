@@ -5,7 +5,7 @@
   <nb-card-body>
   <div class="links">
     <ng-container *ngIf="socialLinks && socialLinks.length > 0">
-      <small class="form-text">Connect with:</small>
+      <small class="form-text">Login by:</small>
       <div class="socials">
         <ng-container *ngFor="let socialLink of socialLinks">
           <a (click)="loginSocial(socialLink.title)"
