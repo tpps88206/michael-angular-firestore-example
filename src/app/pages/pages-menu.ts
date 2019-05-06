@@ -12,6 +12,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
+    title: '統計資訊',
+    icon: 'nb-bar-chart',
+    link: '/pages/statistics',
+  },
+  {
     title: '帳目清單',
     icon: 'nb-tables',
     link: '/pages/list',
