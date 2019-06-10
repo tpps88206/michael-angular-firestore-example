@@ -4,6 +4,7 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UserService } from '../user/user.service';
+import {UserModel} from '../../model/user.model';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,7 @@ export class AuthService {
       (user) => {
         if (user) {
           this.userDetails = user;
-          this.userService.setUser({name: this.userDetails.displayName, picture: this.userDetails.photoURL});
+          this.userService.setUser(new UserModel(this.userDetails.email, this.userDetails.displayName, this.userDetails.photoURL));
         } else {
           this.userDetails = null;
           this.userService.setUser(null);

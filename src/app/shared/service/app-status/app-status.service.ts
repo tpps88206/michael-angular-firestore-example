@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { UpdateAvailableEvent, UpdateActivatedEvent } from '@angular/service-worker/src/low_level';
-import { BehaviorSubject, merge, fromEvent, of } from 'rxjs';
+import { BehaviorSubject, merge, fromEvent, of, interval } from 'rxjs';
 import { mapTo } from 'rxjs/operators';
-import { interval } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +11,8 @@ export class AppStatusService {
   swUpdates = new BehaviorSubject('');
 
   constructor(private updates: SwUpdate) {
-    // programmatically check for updates every 5 seconds
-    // interval(6 * 60 * 60).subscribe(() => this.updates.checkForUpdate());
+    // programmatically check for updates every 60 seconds
+    interval(60000).subscribe(() => this.updates.checkForUpdate());
 
     // Notify the service when a new service worker version is available
     this.updates.available.subscribe((event: UpdateAvailableEvent) => {

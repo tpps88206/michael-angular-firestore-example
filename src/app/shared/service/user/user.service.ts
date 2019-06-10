@@ -1,40 +1,66 @@
-import { Injectable } from '@angular/core';
-import {Contacts, RecentUsers, User, UserData} from '../../../@core/data/users';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import {AuthService} from '../auth/auth.service';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { catchError, map, tap } from 'rxjs/operators';
+
+import { UserModel } from '../../model/user.model';
+import { AppConfig } from '../../config/app.config';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService extends UserData {
+export class UserService {
+  private usersCollection: AngularFirestoreCollection<UserModel>;
+  private user: UserModel;
 
-  private time: Date = new Date;
-  private user: User;
-  private types = {
-    mobile: 'mobile',
-    home: 'home',
-    work: 'work',
-  };
-  private contacts: Contacts[] = [
-    { user: this.user, type: this.types.work },
-  ];
-  private recentUsers: RecentUsers[]  = [
-    { user: this.user, type: this.types.work, time: this.time.setHours(0, 1)},
-  ];
+  constructor(private afs: AngularFirestore,
+              @Inject(PLATFORM_ID) private platformId: object) {
+    this.usersCollection = this.afs.collection<UserModel>(AppConfig.routes.user, (user) => {
+      return user;
+    });
+  }
 
-  setUser(user: User): void {
+  private static handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error); // log to console instead
+
+      if (error.status >= 500) {
+        throw error;
+      }
+
+      return of(result as T);
+    };
+  }
+
+  getUsers(): Observable<UserModel[]> {
+    return this.usersCollection.snapshotChanges()
+      .pipe(
+        map((actions) => {
+          return actions.map((action) => {
+            const data = action.payload.doc.data();
+            return new UserModel(data.email, data.name, data.picture);
+          });
+        }),
+        tap(() => console.log(`fetched users`)),
+        catchError(UserService.handleError('getUsers', [])),
+      );
+  }
+
+  setUser(user: UserModel): void {
     this.user = user;
+    if (this.user) {
+      this.updateUser().then();
+    }
   }
 
   getUser(): Observable<any> {
     return of(this.user);
   }
 
-  getContacts(): Observable<any> {
-    return of(this.contacts);
-  }
-
-  getRecentUsers(): Observable<any> {
-    return of(this.recentUsers);
+  updateUser(): Promise<void> {
+    return this.afs.doc(`${AppConfig.routes.user}/${this.user.email}`)
+      .update({...this.user}).then(() => {
+        console.log(`updated user w/ email=${this.user.email}`);
+      });
   }
 }

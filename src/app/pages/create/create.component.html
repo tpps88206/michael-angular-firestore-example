@@ -19,11 +19,11 @@
         <div class="col-sm-9">
           <nb-select formControlName="user" status="danger"
                      placeholder="SELECT" *ngIf="submitted && f.user.errors else userTemplate">
-            <nb-option [value]="u.value" *ngFor="let u of users">{{ u.title }}</nb-option>
+            <nb-option [value]="u.name" *ngFor="let u of users">{{ u.name }}</nb-option>
           </nb-select>
           <ng-template #userTemplate>
             <nb-select formControlName="user" id="recordUser" placeholder="SELECT">
-              <nb-option [value]="u.value" *ngFor="let u of users">{{ u.title }}</nb-option>
+              <nb-option [value]="u.name" *ngFor="let u of users">{{ u.name }}</nb-option>
             </nb-select>
           </ng-template>
         </div>

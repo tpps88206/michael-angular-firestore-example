@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, NgZone, OnDestroy} from '@angular/core';
+import { AfterViewInit, Component, NgZone, OnDestroy } from '@angular/core';
 import { delay, withLatestFrom, takeWhile } from 'rxjs/operators';
 import {
   NbDialogService,

@@ -6,7 +6,6 @@ import { NbToastStatus } from '@nebular/theme/components/toastr/model';
 import { RecordModel } from '../../shared/model/record.model';
 import { RecordService } from '../../shared/service/record/record.service';
 import { ToastService } from '../../@core/utils';
-import { AppConfig } from '../../shared/config/app.config';
 
 @Component({
   selector: 'ngx-list',
@@ -63,12 +62,7 @@ export class ListComponent implements OnInit {
         title: '人員',
         type: 'string',
         filter: false,
-        editor: {
-          type: 'list',
-          config: {
-            list: AppConfig.users,
-          },
-        },
+        editable: false,
       },
       check: {
         title: '確認',
@@ -95,13 +89,13 @@ export class ListComponent implements OnInit {
     private recordService: RecordService,
     private datePipe: DatePipe,
     private toastService: ToastService,
-  ) {
-  }
+  ) { }
 
   ngOnInit() {
     this.source = new LocalDataSource();
-    this.recordService.getRecords().subscribe((records) => {
-      this.source.load(records);
+    this.recordService.getRecords().subscribe(
+      (records) => {
+        this.source.load(records);
     });
   }
 

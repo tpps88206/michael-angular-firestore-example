@@ -4,7 +4,8 @@ import { NbToastStatus } from '@nebular/theme/components/toastr/model';
 
 import { RecordService } from '../../shared/service/record/record.service';
 import { ToastService } from '../../@core/utils';
-import {AppConfig} from '../../shared/config/app.config';
+import { UserService } from '../../shared/service/user/user.service';
+import { UserModel } from '../../shared/model/user.model';
 
 @Component({
   selector: 'ngx-create',
@@ -15,16 +16,21 @@ export class CreateComponent implements OnInit, AfterViewInit {
   newItemForm: FormGroup;
   submitted = false;
   loadingMediumGroup = false;
-  users = AppConfig.users;
+  users: UserModel[] = [];
 
   constructor(
     private recordService: RecordService,
     private formBuilder: FormBuilder,
     private toastService: ToastService,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
     this.init();
+    this.userService.getUsers().subscribe(
+      (users) => {
+        this.users = users;
+      });
   }
 
   ngAfterViewInit() {
