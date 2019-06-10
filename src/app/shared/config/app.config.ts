@@ -8,7 +8,7 @@ export const AppConfig: any = {
     user: 'user',
     error404: '404',
   },
-  version: '3.9',
+  version: '3.10',
   appName: 'puman',
   year: '2019',
 };

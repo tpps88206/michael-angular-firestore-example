@@ -6,6 +6,8 @@ import { NbToastStatus } from '@nebular/theme/components/toastr/model';
 import { RecordModel } from '../../shared/model/record.model';
 import { RecordService } from '../../shared/service/record/record.service';
 import { ToastService } from '../../@core/utils';
+import { UserService } from '../../shared/service/user/user.service';
+import { UserModel } from '../../shared/model/user.model';
 
 @Component({
   selector: 'ngx-list',
@@ -14,6 +16,7 @@ import { ToastService } from '../../@core/utils';
   providers: [DatePipe],
 })
 export class ListComponent implements OnInit {
+  users: UserModel[] = [];
   source: LocalDataSource;
   settings = {
     actions: {
@@ -51,7 +54,7 @@ export class ListComponent implements OnInit {
         title: '金額',
         type: 'html',
         valuePrepareFunction: (v) => {
-          return v > 0 ? '<div class="text-success">' + v + '</div>' : '<div class="text-danger">' + v * -1 + '</div>';
+          return v > 0 ? `<div class="text-success">${v}</div>` : `<div class="text-danger">${v * -1}</div>`;
         },
       },
       description: {
@@ -60,9 +63,16 @@ export class ListComponent implements OnInit {
       },
       user: {
         title: '人員',
-        type: 'string',
+        type: 'html',
         filter: false,
         editable: false,
+        valuePrepareFunction: (v) => {
+          const user = this.users.find(
+            (u) => {
+              return u.name === v;
+            });
+          return `<img src=${user.picture} alt="Avatar" class="avatar">`;
+        },
       },
       check: {
         title: '確認',
@@ -78,8 +88,8 @@ export class ListComponent implements OnInit {
           },
         },
         valuePrepareFunction: (v) => {
-          return v ? '<div class="text-success"><i class="fas fa-check-circle"></i></div>'
-            : '<div class="text-danger"><i class="fas fa-times-circle"></i></div>';
+          return v ? `<div class="text-success"><i class="fas fa-check-circle"></i></div>`
+            : `<div class="text-danger"><i class="fas fa-times-circle"></i></div>`;
         },
       },
     },
@@ -89,6 +99,7 @@ export class ListComponent implements OnInit {
     private recordService: RecordService,
     private datePipe: DatePipe,
     private toastService: ToastService,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
@@ -97,6 +108,10 @@ export class ListComponent implements OnInit {
       (records) => {
         this.source.load(records);
     });
+    this.userService.getUsers().subscribe(
+      (users) => {
+        this.users = users;
+      });
   }
 
   update(event: any) {
