@@ -71,8 +71,7 @@ export class ListComponent implements OnInit {
             (u) => {
               return u.name === v;
             });
-          return user ? `<img src=${user.picture} alt="Avatar" class="avatar">`
-            : `<img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">`;
+          return `<img src=${user.picture} alt="Avatar" class="avatar">`;
         },
       },
       check: {
