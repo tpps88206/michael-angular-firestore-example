@@ -15,6 +15,8 @@ import { UserTotalComponent } from './statistics/user-total/user-total.component
 import { UserUncheckComponent } from './statistics/user-uncheck/user-uncheck.component';
 import { ItemUncheckComponent } from './statistics/item-uncheck/item-uncheck.component';
 import { ItemTotalComponent } from './statistics/item-total/item-total.component';
+import { DecorateComponent } from './decorate/decorate.component';
+import { DecorateDialogComponent } from './decorate/decorate-dialog/decorate-dialog.component';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -27,6 +29,7 @@ const PAGES_COMPONENTS = [
   UserUncheckComponent,
   ItemUncheckComponent,
   ItemTotalComponent,
+  DecorateComponent,
 ];
 
 @NgModule({
@@ -40,6 +43,7 @@ const PAGES_COMPONENTS = [
   ],
   declarations: [
     ...PAGES_COMPONENTS,
+    DecorateDialogComponent,
   ],
 })
 export class PagesModule {

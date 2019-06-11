@@ -6,9 +6,10 @@ export const AppConfig: any = {
   routes: {
     record: 'record',
     user: 'user',
+    decorate: 'decorate',
     error404: '404',
   },
-  version: '3.10',
+  version: '3.11',
   appName: 'puman',
   year: '2019',
 };

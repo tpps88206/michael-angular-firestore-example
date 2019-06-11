@@ -7,6 +7,7 @@ import { CreateComponent } from './create/create.component';
 import { ListComponent } from './list/list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { DecorateComponent } from './decorate/decorate.component';
 
 const routes: Routes = [{
   path: '',
@@ -23,6 +24,9 @@ const routes: Routes = [{
   }, {
     path: 'statistics',
     component: StatisticsComponent,
+  }, {
+    path: 'decorate',
+    component: DecorateComponent,
   }, {
     path: '',
     redirectTo: 'dashboard',

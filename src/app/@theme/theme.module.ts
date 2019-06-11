@@ -64,6 +64,7 @@ import {
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -101,6 +102,7 @@ const NB_MODULES = [
   NbChatModule,
   NbTooltipModule,
   NbCalendarKitModule,
+  NbEvaIconsModule,
 ];
 
 const COMPONENTS = [

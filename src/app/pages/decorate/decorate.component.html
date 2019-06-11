@@ -1,0 +1,24 @@
+<nb-card>
+  <nb-card-header>
+    裝潢預算
+  </nb-card-header>
+  <nb-card-body>
+    <div class="progress-info" *ngFor="let decorate of decorates">
+      <div class="title">
+        {{ decorate.title }}
+        <!--<button nbButton ghost status="danger"><nb-icon icon="edit"></nb-icon></button>-->
+      </div>
+      <div class="value">
+        {{ decorate.practical | ngxNumberWithCommas }}
+        <span>
+          (預算：{{ decorate.expectant | ngxNumberWithCommas }})
+        </span>
+      </div>
+      <nb-progress-bar [value]="decorate.practical / totalExpectantValue * 100" [status]="decorate.practical > decorate.expectant ? 'danger' : 'success'"></nb-progress-bar>
+      <nb-progress-bar [value]="decorate.expectant / totalExpectantValue * 100" status="primary"></nb-progress-bar>
+      <div class="description">
+        <bdi>{{ decorate.description }}</bdi>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
