@@ -8,7 +8,7 @@ describe('ItemTotalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemTotalComponent ]
+      declarations: [ ItemTotalComponent ],
     })
     .compileComponents();
   }));

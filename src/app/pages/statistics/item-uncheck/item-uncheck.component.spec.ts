@@ -8,7 +8,7 @@ describe('ItemUncheckComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemUncheckComponent ]
+      declarations: [ ItemUncheckComponent ],
     })
     .compileComponents();
   }));
