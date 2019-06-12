@@ -25,11 +25,10 @@ export class HeaderComponent implements OnInit {
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private userService: UserService,
-              private authService: AuthService,
               private analyticsService: AnalyticsService,
               private layoutService: LayoutService,
-              private router: Router) {
-  }
+              private router: Router,
+  ) { }
 
   ngOnInit() {
     if (this.userService) {

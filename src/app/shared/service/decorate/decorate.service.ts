@@ -12,8 +12,7 @@ import { AppConfig } from '../../config/app.config';
 export class DecorateService {
   private decoratesCollection: AngularFirestoreCollection<DecorateModel>;
 
-  constructor(private afs: AngularFirestore,
-              @Inject(PLATFORM_ID) private platformId: object) {
+  constructor(private afs: AngularFirestore) {
     this.decoratesCollection = this.afs.collection<DecorateModel>(AppConfig.routes.decorate, (decorate) => {
       return decorate;
     });

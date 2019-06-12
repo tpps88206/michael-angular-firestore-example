@@ -13,8 +13,7 @@ export class UserService {
   private usersCollection: AngularFirestoreCollection<UserModel>;
   private user: UserModel;
 
-  constructor(private afs: AngularFirestore,
-              @Inject(PLATFORM_ID) private platformId: object) {
+  constructor(private afs: AngularFirestore) {
     this.usersCollection = this.afs.collection<UserModel>(AppConfig.routes.user, (user) => {
       return user;
     });

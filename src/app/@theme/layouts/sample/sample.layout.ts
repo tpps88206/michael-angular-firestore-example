@@ -27,15 +27,16 @@ export class SampleLayoutComponent implements OnDestroy, AfterViewInit {
 
   currentTheme: string;
 
-  constructor(protected stateService: StateService,
-              protected menuService: NbMenuService,
-              protected themeService: NbThemeService,
-              protected bpService: NbMediaBreakpointsService,
-              protected sidebarService: NbSidebarService,
-              private router: Router,
-              private appStatus: AppStatusService,
-              private dialogService: NbDialogService,
-              private zone: NgZone) {
+  constructor(
+    protected stateService: StateService,
+    protected menuService: NbMenuService,
+    protected themeService: NbThemeService,
+    protected bpService: NbMediaBreakpointsService,
+    protected sidebarService: NbSidebarService,
+    private router: Router,
+    private appStatus: AppStatusService,
+    private dialogService: NbDialogService,
+  ) {
     this.stateService.onLayoutState()
       .pipe(takeWhile(() => this.alive))
       .subscribe((layout: string) => this.layout = layout);
