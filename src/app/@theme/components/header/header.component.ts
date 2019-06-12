@@ -6,7 +6,6 @@ import { AnalyticsService } from '../../../@core/utils';
 import { LayoutService } from '../../../@core/utils';
 import { AppConfig } from '../../../shared/config/app.config';
 import { UserService } from '../../../shared/service/user/user.service';
-import { AuthService } from '../../../shared/service/auth/auth.service';
 
 @Component({
   selector: 'ngx-header',
