@@ -1,6 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {DecorateService} from '../../shared/service/decorate/decorate.service';
-import {DecorateModel} from '../../shared/model/decorate.model';
+import { Component, OnInit } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
+
+import { DecorateService } from '../../shared/service/decorate/decorate.service';
+import { DecorateModel } from '../../shared/model/decorate.model';
+import { DecorateDialogComponent } from './decorate-dialog/decorate-dialog.component';
 
 @Component({
   selector: 'ngx-decorate',
@@ -15,6 +18,7 @@ export class DecorateComponent implements OnInit {
 
   constructor(
     private decorateService: DecorateService,
+    private dialogService: NbDialogService,
   ) { }
 
   ngOnInit() {
@@ -27,5 +31,13 @@ export class DecorateComponent implements OnInit {
             this.totalPracticalValue = this.totalPracticalValue + decorate.practical;
           });
       });
+  }
+
+  open() {
+    this.dialogService.open(DecorateDialogComponent)
+      .onClose.subscribe(
+        (name) => {
+          // TODO: Modify decorate from dialog
+        });
   }
 }

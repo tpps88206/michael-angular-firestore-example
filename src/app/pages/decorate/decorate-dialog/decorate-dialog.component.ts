@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { NbDialogRef } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-decorate-dialog',
   templateUrl: './decorate-dialog.component.html',
   styleUrls: ['./decorate-dialog.component.scss'],
 })
-export class DecorateDialogComponent implements OnInit {
+export class DecorateDialogComponent {
 
-  constructor() { }
+  constructor(protected ref: NbDialogRef<DecorateDialogComponent>) {}
 
-  ngOnInit() {
+  cancel() {
+    this.ref.close();
   }
 
+  submit(name) {
+    this.ref.close(name);
+  }
 }

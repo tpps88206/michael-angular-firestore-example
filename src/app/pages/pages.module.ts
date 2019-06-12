@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { NbDialogModule, NbWindowModule } from '@nebular/theme';
 
 import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
@@ -30,6 +31,7 @@ const PAGES_COMPONENTS = [
   ItemUncheckComponent,
   ItemTotalComponent,
   DecorateComponent,
+  DecorateDialogComponent,
 ];
 
 @NgModule({
@@ -40,9 +42,13 @@ const PAGES_COMPONENTS = [
     ReactiveFormsModule,
     Ng2SmartTableModule,
     NgxEchartsModule,
+    NbDialogModule.forChild(),
+    NbWindowModule.forChild(),
   ],
   declarations: [
     ...PAGES_COMPONENTS,
+  ],
+  entryComponents: [
     DecorateDialogComponent,
   ],
 })

@@ -6,7 +6,7 @@
     <div class="progress-info" *ngFor="let decorate of decorates">
       <div class="title">
         {{ decorate.title }}
-        <button nbButton ghost status="danger"><i data-eva="edit"></i></button>
+        <div class="icon" (click)="open()"><i class="nb-edit"></i></div>
       </div>
       <div class="value">
         {{ decorate.practical | ngxNumberWithCommas }}
