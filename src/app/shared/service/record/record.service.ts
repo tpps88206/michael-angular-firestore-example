@@ -1,4 +1,4 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -13,8 +13,7 @@ import { AppConfig } from '../../config/app.config';
 export class RecordService {
   private recordsCollection: AngularFirestoreCollection<RecordModel>;
 
-  constructor(private afs: AngularFirestore,
-              @Inject(PLATFORM_ID) private platformId: object) {
+  constructor(private afs: AngularFirestore) {
     this.recordsCollection = this.afs.collection<RecordModel>(AppConfig.routes.record, (record) => {
       return record.orderBy('date', 'desc');
     });
