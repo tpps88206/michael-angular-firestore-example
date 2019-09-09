@@ -9,7 +9,7 @@ export const AppConfig: any = {
     decorate: 'decorate',
     error404: '404',
   },
-  version: '3.11',
+  version: '3.12',
   appName: 'puman',
   year: '2019',
 };

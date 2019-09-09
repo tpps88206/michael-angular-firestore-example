@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: 'YOUR_FIREBASE_API_KEY',
-    authDomain: 'YOUR_FIREBASE_AUTO_DOMAIN',
-    databaseURL: 'YOUR_FIREBASE_DATABASE_URL',
-    projectId: 'YOUR_FIREBASE_PROJECT_ID',
-    storageBucket: 'YOUR_FIREBASE_STORAGE_BITBUCKET',
-    messagingSenderId: 'YOUR_FIREBASE_MESSAGING_SENDER_ID',
+    apiKey: 'AIzaSyAROhRSg-9LWDW00MrnBG_w5KDxYY-jrMQ',
+    authDomain: 'micheh-224407.firebaseapp.com',
+    databaseURL: 'https://micheh-224407.firebaseio.com',
+    projectId: 'micheh-224407',
+    storageBucket: 'micheh-224407.appspot.com',
+    messagingSenderId: '271647132876',
   },
 };

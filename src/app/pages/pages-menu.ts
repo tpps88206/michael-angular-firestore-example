@@ -12,11 +12,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
-    title: '裝潢預算',
-    icon: 'nb-home',
-    link: '/pages/decorate',
-  },
-  {
     title: '統計資訊',
     icon: 'nb-bar-chart',
     link: '/pages/statistics',
